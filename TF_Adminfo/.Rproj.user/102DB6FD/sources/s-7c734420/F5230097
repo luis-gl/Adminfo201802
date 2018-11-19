@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1542576969984.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F5230097",
+    "lastKnownWriteTime" : 1542582113,
+    "last_content_update" : 1542582113062,
+    "path" : "~/TF_Adminfo/www/TabScripts/Recoleccion.R",
+    "project_path" : "www/TabScripts/Recoleccion.R",
+    "properties" : {
+        "cursorPosition" : "15,36",
+        "scrollLine" : "8"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

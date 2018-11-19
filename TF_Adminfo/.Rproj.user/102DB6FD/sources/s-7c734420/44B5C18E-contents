@@ -1,0 +1,176 @@
+presentacion<-{
+  tags$body(
+    fluidRow(
+      column(12,align="center",
+             tags$h4("Analisis de Sentimientos en Comentarios de Facebook y Twitter"),
+             tags$h5("Administracion de la Informacion")
+      ),
+      column(6,align="center",
+             tags$b("Video: Instalacion de la Maquina Virtual"),
+             tags$video(src="adminfo_script.mp4", type="video/mp4",controls=NA, autoplay=NA,
+                        width=400)
+      ),
+      column(6,
+             tags$b("Descripcion del proyecto"),
+             tags$p("Este proyecto consiste en el analisis de sentimientos de los comentarios
+                    de las redes sociales de Facebook y Twitter. Estos son sobre el tema de la
+                    pelicula Avengers: Infinity War"),
+             tags$b("Objetivos especifico"),
+             p("OE1: Implementar una plataforma de datos en cloud."),
+             p("OE2: Importar y preparar los datos exportados por una API de Facebook y Twitter."),
+             p("OE3: Serializar, explorar y transformar los datos para la ejecucion de consultas."),
+             p("OE4: Realizar un modelo de aprendizaje computador y analizar los resultados."),
+             p("OE5: Visualizar y comunicar los resultados obtenidos a traves de graficos estadisticos.")
+      )
+    ),
+    tags$br(),
+    fluidRow(
+      column(6,
+             tags$b("Especificacion de(los) Datasets"),
+             tags$table(width="100%",
+                        tags$tr(
+                          tags$th("Atributo"),
+                          tags$th("Tipo Variable"), #continuo o discreta
+                          tags$th("Especificacion")
+                        ),
+                        tags$tr(
+                          tags$td("Date"),
+                          tags$td("DateTime"),
+                          tags$td("Fecha de publicacion del Tweet")
+                        ),
+                        tags$tr(
+                          tags$td("Screen Name"),
+                          tags$td("VarChar"),
+                          tags$td("Alias del usuario")
+                        ),
+                        tags$tr(
+                          tags$td("Full Name"),
+                          tags$td("VarChar"),
+                          tags$td("Nombre de la cuenta usuario")
+                        ),
+                        tags$tr(
+                          tags$td("Tweet Text"),
+                          tags$td("VarChar"),
+                          tags$td("Texto del Tweet")
+                        ),
+                        tags$tr(
+                          tags$td("Tweet ID"),
+                          tags$td("VarChar"),
+                          tags$td("Primary Key del Tweet")
+                        ),
+                        tags$tr(
+                          tags$td("Link(s)"),
+                          tags$td("VarChar"),
+                          tags$td("Link vinculado al Tweet")
+                        ),
+                        tags$tr(
+                          tags$td("Location"),
+                          tags$td("VarChar"),
+                          tags$td("Localizacion de donde se envio el Tweet")
+                        ),
+                        tags$tr(
+                          tags$td("Retweets"),
+                          tags$td("Integer"),
+                          tags$td("Numero de Retweets")
+                        ),
+                        tags$tr(
+                          tags$td("Favorites"),
+                          tags$td("Integer"),
+                          tags$td("Numero de Favoritos")
+                        ),
+                        tags$tr(
+                          tags$td("App"),
+                          tags$td("VarChar"),
+                          tags$td("Aplicacion desde la que se envio el Tweet")
+                        ),
+                        tags$tr(
+                          tags$td("Followers"),
+                          tags$td("Integer"),
+                          tags$td("Numero de seguidores del usuario")
+                        ),
+                        tags$tr(
+                          tags$td("Follows"),
+                          tags$td("Integer"),
+                          tags$td("Numero de usuarios al que el usuario sigue")
+                        ),
+                        tags$tr(
+                          tags$td("Listed"),
+                          tags$td("Integer"),
+                          tags$td("Numero de vistos")
+                        ),
+                        tags$tr(
+                          tags$td("Verfied"),
+                          tags$td("Boolean"),
+                          tags$td("Si el usuario se encuentra verificado")
+                        ),
+                        tags$tr(
+                          tags$td("User Since"),
+                          tags$td("DateTime"),
+                          tags$td("Fecha de creacion de la cuenta del usuario")
+                        ),
+                        tags$tr(
+                          tags$td("Bio"),
+                          tags$td("VarChar"),
+                          tags$td("Biografia del usuario")
+                        ),
+                        tags$tr(
+                          tags$td("Web Site"),
+                          tags$td("VarChar"),
+                          tags$td("Pagina web del usuario")
+                        )
+             )
+      ),
+      column(6,
+             tags$h5("Facebook"),
+             tags$table(width="100%",
+                        tags$tr(
+                          tags$th("Atributo"),
+                          tags$th("Tipo Variable"), #continuo o discreta
+                          tags$th("Especificacion")
+                        ),
+                        tags$tr(
+                          tags$td("Created_time"),
+                          tags$td("DateTime"),
+                          tags$td("Fecha de publicacion del comentario")
+                        ),
+                        tags$tr(
+                          tags$td("Message"),
+                          tags$td("VarChar"),
+                          tags$td("Texto del comentario")
+                        ),
+                        tags$tr(
+                          tags$td("Data.Id"),
+                          tags$td("VarChar"),
+                          tags$td("Id del comentario en la publicación")
+                        ),
+                        tags$tr(
+                          tags$td("From.Name"),
+                          tags$td("VarChar"),
+                          tags$td("Nombre del usuario que publicó el comentario")
+                        ),
+                        tags$tr(
+                          tags$td("From.Id"),
+                          tags$td("VarChar"),
+                          tags$td("Id del usuario en Facebook")
+                        ),
+                        tags$tr(
+                          tags$td("Paging.Next"),
+                          tags$td("VarChar"),
+                          tags$td("Comentario al que pertenece el subcomentario")
+                        ),
+                        tags$tr(
+                          tags$td("Id"),
+                          tags$td("VarChar"),
+                          tags$td("Id de la publicación")
+                        )
+             )
+      )
+    ),
+    tags$br(),
+    fluidRow(
+             h5("Infografia"),
+             img(src="infografia.jpg", align="center",width="100%"
+             )
+    )
+  )
+}

@@ -1,0 +1,27 @@
+recoleccion<-{
+  dashboardPage(dashboardHeader(title="Archivo utilizados"),
+      dashboardSidebar(
+        sidebarMenu(
+                    menuSubItem("Twitter",tabName="Twitter"),
+                    menuSubItem("Facebook",tabName="Facebook")
+                    )
+      ),
+      dashboardBody(tabItems(
+        tabItem(tabName="Twitter",
+                tags$h4("Dataset recolectado de Twitter"),
+                tags$h5("*Modificado para una correcta visualización del dataset"),
+                dataTableOutput("idTabTwitter"),
+                helpText("Haga click en Descargar si desea tener el dataset completo"),
+                downloadButton("idDescargaT","Descargar")
+                ),
+        tabItem(tabName="Facebook",
+                tags$h4("Dataset recolectado de Facebook"),
+                tags$h5("*Modificado para una correcta visualización del dataset"),
+                dataTableOutput("idTabFacebook"),
+                helpText("Haga click en Descargar si desea tener el dataset completo"),
+                downloadButton("idDescargaF","Descargar")
+                )
+        )
+      )
+  )
+}

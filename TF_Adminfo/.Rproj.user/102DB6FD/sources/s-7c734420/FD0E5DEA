@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1542582181477.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "471106198",
+    "id" : "FD0E5DEA",
+    "lastKnownWriteTime" : 1542584522,
+    "last_content_update" : 1542584522407,
+    "path" : "~/TF_Adminfo/www/Scripts/Correo.R",
+    "project_path" : "www/Scripts/Correo.R",
+    "properties" : {
+        "cursorPosition" : "13,47",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

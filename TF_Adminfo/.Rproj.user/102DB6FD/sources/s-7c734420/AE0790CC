@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1542564940140.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "AE0790CC",
+    "lastKnownWriteTime" : 1542574006,
+    "last_content_update" : 1542574006837,
+    "path" : "~/TF_Adminfo/www/TabScripts/Preprocesamiento.R",
+    "project_path" : "www/TabScripts/Preprocesamiento.R",
+    "properties" : {
+        "cursorPosition" : "11,7",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

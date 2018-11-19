@@ -1,0 +1,133 @@
+LimpiaDatos<-function(dt){
+  #Quitar el RT (re-tweet)
+  dt<-gsub("RT","",dt)
+  #Quitar etiquetas y hashtags
+  dt<-gsub("@\\w+","",dt)
+  dt<-gsub("#\\w+","",dt)
+  #Quitar los signos de puntuación
+  dt<-gsub("[[:punct:]]"," ",dt)
+  #Cambiar la codificacion del archivo para eliminar otros caracteres
+  Encoding(dt)<-"latin1"
+  #Convertir a minusculas
+  dt<-tolower(dt)
+  #Quitar los urls
+  dt<-gsub("http\\w+","",dt)
+  #Quitar los numeros
+  dt<-removeNumbers(dt)
+  #Quitar palabras sin mucha significancia para el analisis
+  dt<-removeWords(dt,stopwords("SMART"))
+  #Quitar palabra tema de la discusion
+  dt<-removeWords(dt,"avengers")
+  #Quitar posibles saltos de linea y/o tabulaciones
+  dt<-gsub("[[:cntrl:]]"," ",dt)
+  #Quitar espacios en blanco remanentes depues de limpiar
+  dt<-stripWhitespace(dt)
+  return(dt)
+}
+
+CalcSentimentD<-function(str){
+  textos<-LimpiaDatos(str)
+  
+  #Retirar y separar por cada espacio en blanco
+  textAnalisis<-strsplit(textos," ")
+  
+  #Crear el vector que alberga el sentimiento y llenarlo de acuerdo al texto
+  #de cada tweet
+  sentimiento<-NULL
+  for (i in 1:NROW(textAnalisis)){
+    aux<-as.character(unlist(textAnalisis[[i]]))
+    conPos<-match(aux,DictionaryGI$positive)
+    conPos<-!is.na(conPos)
+    cantPos<-sum(conPos)
+    
+    conNeg<-match(aux,DictionaryGI$negative)
+    conNeg<-!is.na(conNeg)
+    cantNeg<-sum(conNeg)
+    
+    val<-cantPos-cantNeg
+    
+    if (val > 0)
+      val<-1
+    else if (val < 0)
+      val<--1
+    else
+      val<-0
+    
+    sentimiento<-c(sentimiento,val)
+  }
+  
+  return(sentimiento)
+}
+
+DicPredict<-function(string){
+  if (is.null(string) || !is.character(string)){
+    return()
+  } else {
+    return(CalcSentimentD(string))
+  }
+}
+
+# GetDSText<-function(){
+#   textos<-read.csv("www/Datasets/Tweets.csv",sep=",")
+#   textos<-as.character(textos$Tweet.Text)
+#   return(textos)
+# }
+# 
+# CalcSentimentSVM<-function(str,tweets){
+#   textos<-LimpiaDatos(tweets)
+#   textos<-data.frame(textos,sentiment=DicPredict(textos))
+#   
+#   str<-LimpiaDatos(str)
+#   
+#   #creacion de un corpus(almacen de palabras) para generar una nube de palabras sin perder datos
+#   #si se usa el mismo arreglo de textos ocurre perdida de datos
+#   corpus<-Corpus(VectorSource(textos$textos))
+#   predCorpus<-Corpus(VectorSource(str))
+#   
+#   #Extraer la raiz de las palabras
+#   corpus<-tm_map(corpus,stemDocument)
+#   predCorpus<-tm_map(predCorpus,stemDocument)
+#   
+#   #Matriz de frecuencias de cada palabra usada en los textos
+#   wordFreq<-DocumentTermMatrix(corpus)
+#   predFreq<-DocumentTermMatrix(predCorpus)
+#   
+#   #Remueve las palabras muy poco usadas
+#   wordSparse<-removeSparseTerms(wordFreq,0.995)
+#   predSparse<-removeSparseTerms(predFreq,0.995)
+#   
+#   #Convertir la nueva matriz de frecuencias en un data frame
+#   tweetsSparse<-as.data.frame(as.matrix(wordSparse))
+#   SVMSparse<-as.data.frame(as.matrix(predSparse))
+#   
+#   #Asegurar que los nombres de las columnas sean el de una palabra
+#   #usada en el texto
+#   colnames(tweetsSparse)=make.names(colnames(tweetsSparse))
+#   colnames(SVMSparse)=make.names(colnames(SVMSparse))
+#   
+#   #Asignar la variable de sentimiento a la matriz de frecuencias
+#   tweetsSparse$Sentiment<-textos$sentiment
+#   #Separar la matriz de frecuencia para entrenamiento del modelo
+#   set.seed(10)
+#   separar<-sample.split(tweetsSparse$Sentiment, SplitRatio = 0.8)
+#   
+#   entrenamiento<-subset(tweetsSparse, separar==TRUE)
+#   
+#   #Crear el modelo predictivo y entrenarlo
+#   modelo<-svm(as.factor(Sentiment)~ .,data=entrenamiento)
+#   
+#   colnames(SVMSparse)=make.names(colnames(tweetsSparse))
+#   
+#   #Verificar el entrenamiento con las pruebas
+#   prediccion<-predict(modelo,newdata=SVMSparse)
+#   
+#   return(as.integer(prediccion))
+# }
+# 
+# SVMPredic<-function(string,tweets){
+#   if (is.null(string) || !is.character(string)){
+#     return()
+#   } else {
+#     return(CalcSentimentSVM(string,tweets))
+#   }
+#}
